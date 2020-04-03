@@ -5,24 +5,23 @@ fetch('https://the-girl.github.io/girl-group-json/db.json').then(res => {
     throw new Error('Error');
   }
 }).then(jsonData => {
-  document.getElementById('idols').innerHTML = process(jsonData);
+  document.getElementById('idols').innerHTML = process(jsonData.idols);
 }).catch(e => {
   console.log(e);
 });
 
 function process(people) {
-  const html = [];
-
-  for (const idol of people.idols) {
-    if (idol.height && idol.weight) {
-      const result = logic(idol.height, idol.weight);
-      Object.assign(idol, result);
-
-      html.push(makeHtml(idol))
-    }
-  }
-
-  return html.join('');
+  return people
+    .filter(idol => idol.height && idol.weight)
+    .map(idol => Object.assign(
+      idol,
+      logic(idol.height, idol.weight),
+    ))
+    .reduce((acc, idol) => {
+      acc.push(makeHtml(idol));
+      return acc;
+    }, [])
+    .join('');
 }
 
 function logic(height, weight) {
