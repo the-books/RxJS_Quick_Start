@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "cd ./src/ch04 && python -m http.server"
   },
   "author": "",
   "license": "ISC"
