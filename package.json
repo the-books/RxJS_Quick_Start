@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "cd ./src/ch04 && python -m http.server"
+    "serve": "cd ./src/ch05 && python -m http.server"
   },
   "author": "",
   "license": "ISC"
